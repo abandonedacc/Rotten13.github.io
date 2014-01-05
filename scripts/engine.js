@@ -6,6 +6,8 @@
         this.width = this.canvas.width;
         this.height = this.canvas.height;
 
+        this.setupMobile();
+
         this.ctx = this.canvas.getContext && this.canvas.getContext('2d');
         if (!this.ctx) { return alert("Please upgrade your browser to play"); }
 
@@ -54,6 +56,45 @@
 
     // Change an active game board
     this.setBoard = function (num, board) { boards[num] = board; };
+
+    this.setupMobile = function () {
+        var container = document.getElementById("container"),
+            hasTouch = !!('ontouchstart' in window),
+            w = window.innerWidth, h = window.innerHeight;
+
+        if (hasTouch) { mobile = true; }
+
+        if (screen.width >= 1280 || !hasTouch) { return false; }
+
+        if (w > h) {
+            alert("Please rotate the device and then click OK");
+            w = window.innerWidth; h = window.innerHeight;
+        }
+
+        container.style.height = h * 2 + "px";
+        window.scrollTo(0, 1);
+
+        h = window.innerHeight + 2;
+        container.style.height = h + "px";
+        container.style.width = w + "px";
+        container.style.padding = 0;
+
+        if (h >= this.canvas.height * 1.75 || w >= this.canvas.height * 1.75) {
+            this.canvasMultiplier = 2;
+            this.canvas.width = w / 2;
+            this.canvas.height = h / 2;
+            this.canvas.style.width = w + "px";
+            this.canvas.style.height = h + "px";
+        } else {
+            this.canvas.width = w;
+            this.canvas.height = h;
+        }
+
+        this.canvas.style.position = 'absolute';
+        this.canvas.style.left = "0px";
+        this.canvas.style.top = "0px";
+
+    };
 };
 
 
