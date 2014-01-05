@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,
+maximum-scale=1.0, user-scalable=no">
   <title>Page Resize</title>
   <link rel="stylesheet" href="lib/base.css" type="text/css" />
   <script src='lib/jquery.min.js'></script>
 </head>
 <body>
   <div id='container'>
-    <canvas id='game' width='480' height='320'></canvas>
+    <canvas id='game' width='480' height='800'></canvas>
   </div>
 
 <script>
@@ -16,7 +18,7 @@
 // Wait for document ready callback
 $(function() {
   var maxWidth = 480;
-  var maxHeight = 440;
+  var maxHeight = 800;
   var initialWidth = $("#game").attr('width');
   var initialHeight = $("#game").attr('height');
 
@@ -50,6 +52,11 @@ $(function() {
   $(window).bind('resize',handleResize);
 
   handleResize();
+
+
+  $(document).on("touchmove", function (event) {//disable zooming, scrolling
+      event.preventDefault();
+  });
 });
 </script>
 
