@@ -96,7 +96,10 @@ var startGame = function () {
 }
 
 window.addEventListener("load", function () {
+    console.log('window ready');
     Game.initialize("game", sprites, startGame);
 
    
 });
+
+$(document).on("ready", function (e) { e.preventDefault;console.log('doc ready'); });

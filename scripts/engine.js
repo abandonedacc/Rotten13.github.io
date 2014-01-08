@@ -1,4 +1,5 @@
-﻿var Game = new function () {
+﻿
+var Game = new function () {
 
     // Game Initialization
     this.initialize = function (canvasElementId, sprite_data, callback) {
